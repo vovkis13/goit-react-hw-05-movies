@@ -1,0 +1,15 @@
+.list {
+  display: flex;
+  list-style: none;
+}
+.link {
+  margin-right: 20px;
+  text-decoration: none;
+  color: blue;
+}
+
+.active {
+  margin-right: 20px;
+  text-decoration: none;
+  color: red;
+}
