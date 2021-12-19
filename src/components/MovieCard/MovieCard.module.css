@@ -1,0 +1,8 @@
+.card {
+  display: flex;
+  gap: 40px;
+}
+
+.thumb {
+  width: 20%;
+}

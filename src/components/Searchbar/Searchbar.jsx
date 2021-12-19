@@ -33,5 +33,6 @@ export default function Searchbar({ initQuery, onSubmit }) {
 }
 
 Searchbar.propTypes = {
+  initQuery: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
 };

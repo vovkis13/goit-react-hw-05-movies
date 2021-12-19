@@ -12,15 +12,15 @@ export default function HomePage() {
       const movies = await fetchTrending();
       setTrends(movies.results);
     }
-    if (!trends.length) fetchData();
-  }, [trends]);
+    fetchData();
+  }, []);
 
   return (
     <>
       <h2 className={s.title}>Trending movies</h2>
       <ul className={s.list}>
         {trends.map(movie => (
-          <MovieListItem className={s.item} movie={movie} />
+          <MovieListItem movie={movie} key={movie.id} />
         ))}
       </ul>
     </>
