@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
-import { fetchMovieCreditsById } from '../../api/fetchMovies';
-import s from './MovieCast.module.css';
+import { fetchMovieById } from '../../api/fetchMovies';
+import s from './Cast.module.css';
 
-export default function MovieCast({ id }) {
+export default function Cast({ id }) {
   const [cast, setCast] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
-      const movieCast = await fetchMovieCreditsById(id);
+      const movieCast = await fetchMovieById(id, 'credits');
       setCast(movieCast);
     }
     fetchData();

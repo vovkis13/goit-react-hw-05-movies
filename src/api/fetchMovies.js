@@ -4,114 +4,50 @@ const API_KEY = 'c7488cc8d311162ba5f5071cc3afab34';
 const MEDIA_TYPE = 'movie';
 const TIME_WINDOW = 'day';
 
-export async function fetchConfig() {
-  const url = `${BASE_URL}/configuration`;
-  const config = {
-    params: {
-      api_key: API_KEY,
-    },
-  };
+let IMAGE_URL;
+const axiosConfig = {
+  params: {
+    api_key: API_KEY,
+  },
+};
 
+export async function fetchMovies(type = '', query = '') {
+  let url = `${BASE_URL}/${type}/${MEDIA_TYPE}`;
+  let config = axiosConfig;
+  if (type === 'trending') url += `/${TIME_WINDOW}`;
+  if (type === 'search') config = { params: { ...config.params, query } };
   try {
-    const res = await axios.get(url, config);
-    return res.data;
-  } catch (error) {
-    console.error(error);
+    const { data } = await axios.get(url, config);
+    return data;
+  } catch (e) {
+    console.error(e);
   }
 }
 
-export async function fetchTrending() {
-  const url = `${BASE_URL}/trending/${MEDIA_TYPE}/${TIME_WINDOW}`;
-  const config = {
-    params: {
-      api_key: API_KEY,
-    },
-  };
-
+export async function fetchMovieById(id, type = '') {
+  let url = `${BASE_URL}/configuration`;
   try {
-    const res = await axios.get(url, config);
-    return res.data;
-  } catch (error) {
-    console.error(error);
+    if (!IMAGE_URL) {
+      const { data } = await axios.get(url, axiosConfig);
+      IMAGE_URL = data.images.base_url;
+    }
+  } catch (e) {
+    console.error(e);
   }
-}
 
-export async function fetchMovies(query) {
-  const url = `${BASE_URL}/search/movie`;
-  const config = {
-    params: {
-      api_key: API_KEY,
-      query,
-    },
-  };
-
+  url = `${BASE_URL}/${MEDIA_TYPE}/${id}`;
+  if (type) url += `/${type}`;
   try {
-    const res = await axios.get(url, config);
-    return res.data;
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-export async function fetchMovieById(id) {
-  let conf = null;
-  try {
-    conf = await fetchConfig();
-  } catch (error) {
-    console.error(error);
-  }
-  const url = `${BASE_URL}/movie/${id}`;
-  const config = {
-    params: {
-      api_key: API_KEY,
-    },
-  };
-  try {
-    let res = await axios.get(url, config);
-    res.data.poster_path =
-      conf.images.base_url + '/w300' + res.data.poster_path;
-    return res.data;
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-export async function fetchMovieCreditsById(id) {
-  let conf = null;
-  try {
-    conf = await fetchConfig();
-  } catch (error) {
-    console.error(error);
-  }
-  const url = `${BASE_URL}/movie/${id}/credits`;
-  const config = {
-    params: {
-      api_key: API_KEY,
-    },
-  };
-  try {
-    let res = await axios.get(url, config);
-    let cast = res.data.cast.map(actor => ({
-      ...actor,
-      profile_path: conf.images.base_url + 'w200' + actor.profile_path,
-    }));
-    return cast;
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-export async function fetchMovieReviewsById(id) {
-  const url = `${BASE_URL}/movie/${id}/reviews`;
-  const config = {
-    params: {
-      api_key: API_KEY,
-    },
-  };
-  try {
-    let res = await axios.get(url, config);
-    return res.data;
-  } catch (error) {
-    console.error(error);
+    const { data } = await axios.get(url, axiosConfig);
+    if (!type) data.poster_path = IMAGE_URL + '/w300' + data.poster_path;
+    if (type === 'credits') {
+      return data.cast.map(actor => ({
+        ...actor,
+        profile_path: IMAGE_URL + 'w200' + actor.profile_path,
+      }));
+    }
+    return data;
+  } catch (e) {
+    console.error(e);
   }
 }

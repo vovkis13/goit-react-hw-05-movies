@@ -17,7 +17,7 @@ export default function MoviesPage() {
       return;
     }
     setLoading(true);
-    const movies = await fetchMovies(tempQuery);
+    const movies = await fetchMovies('search', tempQuery);
     setQuery(tempQuery);
     setMovies(movies.results);
     setLoading(false);

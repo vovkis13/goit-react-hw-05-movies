@@ -8,11 +8,11 @@ import {
 } from 'react-router-dom';
 import { fetchMovieById } from '../../api/fetchMovies';
 import MovieCard from '../../components/MovieCard/MovieCard';
-import MovieCast from '../../components/MovieCast';
-import MovieReviews from '../../components/MovieReviews';
-import s from './MovieInfoPage.module.css';
+import Cast from '../../components/Cast';
+import Reviews from '../../components/Reviews';
+import s from './MovieDetailsPage.module.css';
 
-export default function MovieInfoPage({ children }) {
+export default function MovieDetailsPage({ children }) {
   const [movie, setMovie] = useState(null);
   const navigate = useNavigate();
   const { movieId } = useParams();
@@ -45,8 +45,8 @@ export default function MovieInfoPage({ children }) {
         </li>
       </ul>
       <Routes>
-        <Route path={'cast'} element={<MovieCast id={movieId} />} />
-        <Route path={'reviews'} element={<MovieReviews />} />
+        <Route path={'cast'} element={<Cast id={movieId} />} />
+        <Route path={'reviews'} element={<Reviews />} />
       </Routes>
     </div>
   );

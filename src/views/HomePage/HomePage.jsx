@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchTrending } from '../../api/fetchMovies';
+import { fetchMovies } from '../../api/fetchMovies';
 import MovieListItem from '../../components/MovieListItem';
 // import PropTypes from 'prop-types';
 import s from './HomePage.module.css';
@@ -9,7 +9,7 @@ export default function HomePage() {
 
   useEffect(() => {
     async function fetchData() {
-      const movies = await fetchTrending();
+      const movies = await fetchMovies('trending');
       setTrends(movies.results);
     }
     fetchData();
