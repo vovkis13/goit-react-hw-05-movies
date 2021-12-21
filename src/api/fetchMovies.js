@@ -57,7 +57,6 @@ export async function fetchMovieById(id) {
   let conf = null;
   try {
     conf = await fetchConfig();
-    console.log(conf);
   } catch (error) {
     console.error(error);
   }
@@ -67,11 +66,50 @@ export async function fetchMovieById(id) {
       api_key: API_KEY,
     },
   };
-
   try {
     let res = await axios.get(url, config);
     res.data.poster_path =
       conf.images.base_url + '/w300' + res.data.poster_path;
+    return res.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function fetchMovieCreditsById(id) {
+  let conf = null;
+  try {
+    conf = await fetchConfig();
+  } catch (error) {
+    console.error(error);
+  }
+  const url = `${BASE_URL}/movie/${id}/credits`;
+  const config = {
+    params: {
+      api_key: API_KEY,
+    },
+  };
+  try {
+    let res = await axios.get(url, config);
+    let cast = res.data.cast.map(actor => ({
+      ...actor,
+      profile_path: conf.images.base_url + 'w200' + actor.profile_path,
+    }));
+    return cast;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function fetchMovieReviewsById(id) {
+  const url = `${BASE_URL}/movie/${id}/reviews`;
+  const config = {
+    params: {
+      api_key: API_KEY,
+    },
+  };
+  try {
+    let res = await axios.get(url, config);
     return res.data;
   } catch (error) {
     console.error(error);
