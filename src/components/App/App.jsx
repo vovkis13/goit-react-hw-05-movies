@@ -1,12 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
 import React, { lazy, Suspense } from 'react';
-// import s from './App.module.css';
 import Navigation from '../Navigation';
-import PageNotFound from '../../views/PageNotFound';
-import MovieDetailsPage from '../../views/MovieDetailsPage';
-
 const HomePage = lazy(() => import('../../views/HomePage'));
 const MoviesPage = lazy(() => import('../../views/MoviesPage'));
+const MovieDetailsPage = lazy(() => import('../../views/MovieDetailsPage'));
+const PageNotFound = lazy(() => import('../../views/PageNotFound'));
+// import s from './App.module.css';
 
 export default function App() {
   return (
@@ -30,8 +29,22 @@ export default function App() {
             </Suspense>
           }
         ></Route>
-        <Route path="/movies/:movieId/*" element={<MovieDetailsPage />}></Route>
-        <Route path="*" element={<PageNotFound />}></Route>
+        <Route
+          path="/movies/:movieId/*"
+          element={
+            <Suspense fallback={<div>Wait...</div>}>
+              <MovieDetailsPage />
+            </Suspense>
+          }
+        ></Route>
+        <Route
+          path="*"
+          element={
+            <Suspense fallback={<div>Wait...</div>}>
+              <PageNotFound />
+            </Suspense>
+          }
+        ></Route>
       </Routes>
     </>
   );
