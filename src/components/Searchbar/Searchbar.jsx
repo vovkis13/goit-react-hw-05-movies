@@ -1,15 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { MdSearch } from 'react-icons/md';
 import s from './Searchbar.module.css';
 
-export default function Searchbar({ initQuery, onSubmit }) {
+export default function Searchbar({ onSubmit }) {
   const [query, setQuery] = useState('');
-
-  const handleChange = e => setQuery(e.target.value);
-  useEffect(() => {
-    setQuery(initQuery);
-  }, [initQuery]);
 
   return (
     <header className={s.searchbar}>
@@ -24,8 +19,8 @@ export default function Searchbar({ initQuery, onSubmit }) {
           type="text"
           autoComplete="off"
           autoFocus
-          placeholder="Search images and photos"
-          onChange={handleChange}
+          placeholder="Search movies"
+          onChange={e => setQuery(e.target.value)}
         />
       </form>
     </header>
@@ -33,6 +28,5 @@ export default function Searchbar({ initQuery, onSubmit }) {
 }
 
 Searchbar.propTypes = {
-  initQuery: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
 };

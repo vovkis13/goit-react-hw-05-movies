@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import s from './MovieCard.module.css';
 
 export default function MovieCard({ movieInfo }) {
@@ -20,3 +21,14 @@ export default function MovieCard({ movieInfo }) {
     </div>
   );
 }
+
+MovieCard.propTypes = {
+  movieInfo: PropTypes.shape({
+    poster_path: PropTypes.string,
+    title: PropTypes.string,
+    release_date: PropTypes.string,
+    popularity: PropTypes.number,
+    overview: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf([null])]),
+    genres: PropTypes.arrayOf(PropTypes.object),
+  }).isRequired,
+};

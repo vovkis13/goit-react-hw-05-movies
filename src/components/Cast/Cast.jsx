@@ -1,17 +1,19 @@
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { fetchMovieById } from '../../api/fetchMovies';
 import s from './Cast.module.css';
 
-export default function Cast({ id }) {
+export default function Cast() {
   const [cast, setCast] = useState([]);
+  const { movieId } = useParams();
 
   useEffect(() => {
     async function fetchData() {
-      const movieCast = await fetchMovieById(id, 'credits');
+      const movieCast = await fetchMovieById(movieId, 'credits');
       setCast(movieCast);
     }
     fetchData();
-  }, [id]);
+  }, [movieId]);
 
   return (
     <>
@@ -28,3 +30,4 @@ export default function Cast({ id }) {
     </>
   );
 }
+

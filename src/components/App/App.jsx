@@ -11,7 +11,6 @@ export default function App() {
   return (
     <>
       <Navigation />
-
       <Routes>
         <Route
           path="/"

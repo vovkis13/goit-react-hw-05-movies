@@ -5,27 +5,28 @@ import MovieListItem from '../../components/MovieListItem';
 import s from './MoviesPage.module.css';
 
 export default function MoviesPage() {
-  const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const tempQuery = e.target[1].value;
-    if (!tempQuery) {
-      setMovies([]);
-      return;
-    }
+    const query = e.target[1].value;
+    if (!query) return;
     setLoading(true);
-    const movies = await fetchMovies('search', tempQuery);
-    setQuery(tempQuery);
-    setMovies(movies.results);
-    setLoading(false);
+    try {
+      const { results } = await fetchMovies('search', query);
+      setMovies(results);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <>
-      <Searchbar initQuery={query} onSubmit={handleSubmit} />
+      <h2 className={s.title}>Search movies</h2>
+      <Searchbar onSubmit={handleSubmit} />
       {!loading && (
         <ul className={s.list}>
           {movies.map(movie => (
