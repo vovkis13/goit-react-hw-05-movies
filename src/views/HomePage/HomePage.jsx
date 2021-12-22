@@ -23,7 +23,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <>
+    <div>
       <h2 className={s.title}>Trending movies</h2>
       {!loading && (
         <ul className={s.list}>
@@ -32,6 +32,6 @@ export default function HomePage() {
           ))}
         </ul>
       )}
-    </>
+    </div>
   );
 }
