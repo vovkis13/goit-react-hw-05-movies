@@ -2,10 +2,10 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import React, { lazy, Suspense } from 'react';
 import Container from '../Container/Container';
 import Navigation from '../Navigation';
+import s from './App.module.css';
 const HomePage = lazy(() => import('../../views/HomePage'));
 const MoviesPage = lazy(() => import('../../views/MoviesPage'));
 const MovieDetailsPage = lazy(() => import('../../views/MovieDetailsPage'));
-const PageNotFound = lazy(() => import('../../views/PageNotFound'));
 
 export default function App() {
   return (
@@ -15,7 +15,7 @@ export default function App() {
         <Route
           path="/"
           element={
-            <Suspense fallback={<div>Wait...</div>}>
+            <Suspense fallback={<div className={s.suspense}>Wait...</div>}>
               <HomePage />
             </Suspense>
           }
@@ -23,7 +23,7 @@ export default function App() {
         <Route
           path="/movies"
           element={
-            <Suspense fallback={<div>Wait...</div>}>
+            <Suspense fallback={<div className={s.suspense}>Wait...</div>}>
               <MoviesPage />
             </Suspense>
           }
@@ -31,7 +31,7 @@ export default function App() {
         <Route
           path="/movies/:movieId/*"
           element={
-            <Suspense fallback={<div>Wait...</div>}>
+            <Suspense fallback={<div className={s.suspense}>Wait...</div>}>
               <MovieDetailsPage />
             </Suspense>
           }

@@ -1,8 +1,12 @@
 .card {
-  display: flex;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 40px;
+  padding: 0 40px;
 }
 
-.thumb {
-  width: 20%;
+.thumb img {
+  display: block;
+  width: 100%;
 }

@@ -27,7 +27,7 @@ export default function MoviesPage() {
   };
 
   return (
-    <>
+    <div>
       <h2 className={s.title}>Search movies</h2>
       <Searchbar onSubmit={handleSubmit} />
       {!loading && (
@@ -37,6 +37,6 @@ export default function MoviesPage() {
           ))}
         </ul>
       )}
-    </>
+    </div>
   );
 }

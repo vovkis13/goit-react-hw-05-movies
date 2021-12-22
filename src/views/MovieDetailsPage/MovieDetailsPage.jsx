@@ -1,15 +1,7 @@
 import { useEffect, useState } from 'react';
-import {
-  NavLink,
-  useNavigate,
-  useParams,
-  Route,
-  Routes,
-} from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { fetchMovieById } from '../../api/fetchMovies';
 import MovieCard from '../../components/MovieCard/MovieCard';
-import Cast from '../../components/Cast';
-import Reviews from '../../components/Reviews';
 import s from './MovieDetailsPage.module.css';
 
 export default function MovieDetailsPage() {
@@ -35,28 +27,14 @@ export default function MovieDetailsPage() {
 
   return (
     !loading && (
-      <div>
+      <div className={s.details}>
         <button className={s.goBack} onClick={() => navigate(-1)}>
           Go back
         </button>
+        <h2 className={s.title}>Movie details</h2>
         {movie && <MovieCard movieInfo={movie} />}
-        <p className={s.addTitle}>Additional information:</p>
-        <ul>
-          <li>
-            <NavLink className={s.addLink} to={'cast'}>
-              Cast
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className={s.addLink} to={'reviews'}>
-              Reviews
-            </NavLink>
-          </li>
-        </ul>
-        <Routes>
-          <Route path={'cast'} element={<Cast />} />
-          <Route path={'reviews'} element={<Reviews />} />
-        </Routes>
-      </div>))
+      </div>
+    )
+  );
 };
 

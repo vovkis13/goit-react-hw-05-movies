@@ -1,0 +1,21 @@
+.goBack {
+  display: block;
+  width: 100px;
+  height: 30px;
+  margin-left: 40px;
+  padding: 5px;
+  border: none;
+  border-radius: 10%;
+  background-color: hsla(276, 51%, 30%, 0.8);
+  color: white;
+}
+.goBack:hover {
+  background-color: hsla(276, 52%, 30%, 0.5);
+}
+.title {
+  margin: 0 auto 30px;
+  font-size: 30px;
+  font-weight: 500;
+  text-align: center;
+  color: #562675;
+}

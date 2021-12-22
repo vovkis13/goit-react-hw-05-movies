@@ -9,7 +9,7 @@ export default function Navigation() {
         <li>
           <NavLink
             to="/"
-            className={({ isActive }) => (isActive ? s.active : s.link)}
+            className={({ isActive }) => (isActive ? s.active : s.inactive)}
           >
             Home
           </NavLink>
@@ -17,7 +17,7 @@ export default function Navigation() {
         <li>
           <NavLink
             to="/movies"
-            className={({ isActive }) => (isActive ? s.active : s.link)}
+            className={({ isActive }) => (isActive ? s.active : s.inactive)}
           >
             Movies
           </NavLink>

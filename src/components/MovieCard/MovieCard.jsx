@@ -1,5 +1,8 @@
 import React from 'react';
+import { NavLink, Routes, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Cast from '../Cast';
+import Reviews from '../Reviews';
 import s from './MovieCard.module.css';
 
 export default function MovieCard({ movieInfo }) {
@@ -17,6 +20,25 @@ export default function MovieCard({ movieInfo }) {
         <p>{popularity}</p>
         <p>{overview}</p>
         <p>{genres.map(({ name }) => name).join(' ')}</p>
+        <p className={s.addTitle}>Additional information:</p>
+        <ul>
+          <li>
+            <NavLink className={s.addLink} to={'cast'}>
+              Cast
+            </NavLink>
+          </li>
+          <li>
+            <NavLink className={s.addLink} to={'reviews'}>
+              Reviews
+            </NavLink>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <Routes>
+          <Route path={'cast'} element={<Cast />} />
+          <Route path={'reviews'} element={<Reviews />} />
+        </Routes>
       </div>
     </div>
   );

@@ -1,17 +1,15 @@
 .list {
   display: flex;
+  gap: 20px;
   list-style: none;
 }
-.link {
-  margin-right: 20px;
+.list a {
   font-size: 24px;
   text-decoration: none;
+}
+.inactive {
   color: #562675;
 }
-
 .active {
-  margin-right: 20px;
-  font-size: 24px;
-  text-decoration: none;
   color: #b25deb;
 }

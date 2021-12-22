@@ -1,7 +1,12 @@
 .cast {
   display: grid;
-  grid-template-columns: repeat(5, 200px);
-  gap: 20px;
+  grid-template-columns: repeat(5, auto);
+  gap: 10px;
 
   list-style: none;
+}
+
+.cast img {
+  display: block;
+  width: 100%;
 }
