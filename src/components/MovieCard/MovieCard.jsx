@@ -6,21 +6,24 @@ import Reviews from '../Reviews';
 import s from './MovieCard.module.css';
 
 export default function MovieCard({ movieInfo }) {
-  const { poster_path, title, release_date, popularity, overview, genres } =
+  const { poster_path, title, release_date, vote_average, overview, genres } =
     movieInfo;
-
+  const year = release_date.split('-')[0];
   return (
     <div className={s.card}>
       <div className={s.thumb}>
         <img src={poster_path} alt={title} />
       </div>
       <div className={s.info}>
-        <h3>{title}</h3>
-        <span>{release_date}</span>
-        <p>{popularity}</p>
-        <p>{overview}</p>
-        <p>{genres.map(({ name }) => name).join(' ')}</p>
-        <p className={s.addTitle}>Additional information:</p>
+        <h3>
+          {title} ({year})
+        </h3>
+        <p className={s.info}>User score: {vote_average * 10}%</p>
+        <p className={s.subtitles}>Overview</p>
+        <p className={s.info}>{overview}</p>
+        <p className={s.subtitles}>Genres</p>
+        <p className={s.info}>{genres.map(({ name }) => name).join(' ')}</p>
+        <p className={s.subtitles}>Additional information:</p>
         <ul>
           <li className={s.addLink}>
             <NavLink

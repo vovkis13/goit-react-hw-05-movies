@@ -13,7 +13,6 @@ export default function HomePage() {
       try {
         const { results } = await fetchMovies('trending');
         setTrends(results);
-        console.log(results);
       } catch (e) {
         console.error(e);
       } finally {

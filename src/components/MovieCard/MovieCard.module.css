@@ -11,9 +11,6 @@
   display: block;
   width: 100%;
 }
-.addTitle {
-  font-size: 18px;
-}
 
 .addLink a {
   font-size: 20px;
@@ -25,4 +22,11 @@
 }
 .active {
   color: #b25deb;
+}
+.subtitles {
+  font-weight: 700;
+  margin: 10px 0;
+}
+.info {
+  margin: 0;
 }

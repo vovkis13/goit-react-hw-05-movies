@@ -25,7 +25,7 @@ export default function Cast() {
             <img src={actor.profile_path} alt={actor.name} />
             <div>
               <p>{actor.name}</p>
-              <p>{actor.character}</p>
+              <p>Character: {actor.character}</p>
             </div>
           </li>
         ))}
