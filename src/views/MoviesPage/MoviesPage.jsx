@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { fetchMovies } from '../../api/fetchMovies';
 import Searchbar from '../../components/Searchbar';
 import MovieListItem from '../../components/MovieListItem';
@@ -9,11 +9,12 @@ export default function MoviesPage() {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  console.log(searchParams);
 
-  const handleSubmit = async e => {
-    e.preventDefault();
-    const query = e.target[1].value;
-    navigate(`?query=${query}`);
+  // if (searchParams.get('query')) getMovies(searchParams.get('query'));
+
+  async function getMovies(query) {
     if (!query) return;
     setLoading(true);
     try {
@@ -24,6 +25,13 @@ export default function MoviesPage() {
     } finally {
       setLoading(false);
     }
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const query = e.target[1].value;
+    navigate(`?query=${query}`);
+    getMovies(query);
   };
 
   return (

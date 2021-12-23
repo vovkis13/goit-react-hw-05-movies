@@ -18,7 +18,7 @@ export default function Reviews() {
   return (
     <div>
       <h3>Reviews:</h3>
-      {reviews.length === 0 && <p>No reviews yet...</p>}
+      {reviews.length === 0 && <p>We don't have any reviews for this movie</p>}
       {reviews.length > 0 && (
         <ul className={s.reviews}>
           {reviews.map(review => (
