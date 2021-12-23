@@ -15,7 +15,9 @@ export default function App() {
         <Route
           path="/"
           element={
-            <Suspense fallback={<div className={s.suspense}>Wait...</div>}>
+            <Suspense
+              fallback={<div className={s.suspense}>Please wait...</div>}
+            >
               <HomePage />
             </Suspense>
           }
@@ -23,7 +25,9 @@ export default function App() {
         <Route
           path="/movies"
           element={
-            <Suspense fallback={<div className={s.suspense}>Wait...</div>}>
+            <Suspense
+              fallback={<div className={s.suspense}>Please wait...</div>}
+            >
               <MoviesPage />
             </Suspense>
           }
@@ -31,7 +35,9 @@ export default function App() {
         <Route
           path="/movies/:movieId/*"
           element={
-            <Suspense fallback={<div className={s.suspense}>Wait...</div>}>
+            <Suspense
+              fallback={<div className={s.suspense}>Please wait...</div>}
+            >
               <MovieDetailsPage />
             </Suspense>
           }
