@@ -6,9 +6,14 @@ import s from './Searchbar.module.css';
 export default function Searchbar({ onSubmit }) {
   const [query, setQuery] = useState('');
 
+  const handleSubmit = e => {
+    setQuery('');
+    onSubmit(e);
+  };
+
   return (
     <header className={s.searchbar}>
-      <form className={s.searchForm} onSubmit={onSubmit}>
+      <form className={s.searchForm} onSubmit={handleSubmit}>
         <button className={s.button} type="submit">
           <MdSearch />
         </button>

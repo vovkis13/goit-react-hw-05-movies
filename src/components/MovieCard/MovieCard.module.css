@@ -11,6 +11,9 @@
   display: block;
   width: 100%;
 }
+.addTitle {
+  font-size: 18px;
+}
 
 .addLink a {
   font-size: 20px;

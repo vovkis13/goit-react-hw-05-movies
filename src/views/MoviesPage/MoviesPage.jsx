@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { fetchMovies } from '../../api/fetchMovies';
 import Searchbar from '../../components/Searchbar';
@@ -9,10 +9,7 @@ export default function MoviesPage() {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
-  console.log(searchParams);
-
-  // if (searchParams.get('query')) getMovies(searchParams.get('query'));
+  const [searchParams] = useSearchParams();
 
   async function getMovies(query) {
     if (!query) return;
@@ -26,6 +23,10 @@ export default function MoviesPage() {
       setLoading(false);
     }
   }
+
+  useEffect(() => {
+    if (searchParams.get('query')) getMovies(searchParams.get('query'));
+  }, [searchParams]);
 
   const handleSubmit = e => {
     e.preventDefault();
