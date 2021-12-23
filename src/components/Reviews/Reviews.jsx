@@ -16,17 +16,21 @@ export default function Reviews() {
   }, [movieId]);
 
   return (
-    <>
+    <div>
       <h3>Reviews:</h3>
-      <ul className={s.reviews}>
-        {reviews.map(review => (
-          <li key={review.id}>
-            <h4>{review.author}</h4>
-            <p>{review.content}</p>
-          </li>
-        ))}
-      </ul>
-    </>
+      {reviews.length === 0 && <p>No reviews yet...</p>}
+      {reviews.length > 0 && (
+        <ul className={s.reviews}>
+          {reviews.map(review => (
+            <li className={s.review} key={review.id}>
+              <details>
+                <summary className={s.author}>{review.author}</summary>
+                <p className={s.content}>{review.content}</p>
+              </details>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 }
-

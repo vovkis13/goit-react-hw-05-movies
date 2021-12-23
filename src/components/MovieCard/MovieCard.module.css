@@ -4,9 +4,22 @@
   grid-template-columns: 1fr 1fr 1fr;
   gap: 40px;
   padding: 0 40px;
+  color: #562675;
 }
 
 .thumb img {
   display: block;
   width: 100%;
+}
+
+.addLink a {
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.inactive {
+  color: #562675;
+}
+.active {
+  color: #b25deb;
 }

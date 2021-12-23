@@ -1,11 +1,19 @@
 .cast {
-  display: grid;
-  grid-template-columns: repeat(5, auto);
+  display: flex;
+  flex-direction: column;
   gap: 10px;
-
+  margin: 0;
+  padding: 0;
   list-style: none;
 }
-
+.actor {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 20px;
+  max-height: 150px;
+}
 .cast img {
   display: block;
   width: 100%;

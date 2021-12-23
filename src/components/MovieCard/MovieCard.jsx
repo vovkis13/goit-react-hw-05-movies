@@ -22,13 +22,19 @@ export default function MovieCard({ movieInfo }) {
         <p>{genres.map(({ name }) => name).join(' ')}</p>
         <p className={s.addTitle}>Additional information:</p>
         <ul>
-          <li>
-            <NavLink className={s.addLink} to={'cast'}>
+          <li className={s.addLink}>
+            <NavLink
+              className={({ isActive }) => (isActive ? s.active : s.inactive)}
+              to={'cast'}
+            >
               Cast
             </NavLink>
           </li>
-          <li>
-            <NavLink className={s.addLink} to={'reviews'}>
+          <li className={s.addLink}>
+            <NavLink
+              className={({ isActive }) => (isActive ? s.active : s.inactive)}
+              to={'reviews'}
+            >
               Reviews
             </NavLink>
           </li>
