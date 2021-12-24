@@ -23,7 +23,7 @@ export default function Reviews() {
         <ul className={s.reviews}>
           {reviews.map((review, i) => (
             <li className={s.review} key={review.id}>
-              <details open={i < 5 ? 'open' : ''}>
+              <details open={i < 3 ? true : false}>
                 <summary className={s.author}>{review.author}</summary>
                 <p className={s.content}>{review.content}</p>
               </details>
