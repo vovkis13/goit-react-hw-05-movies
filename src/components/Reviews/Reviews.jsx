@@ -21,9 +21,9 @@ export default function Reviews() {
       {reviews.length === 0 && <p>We don't have any reviews for this movie</p>}
       {reviews.length > 0 && (
         <ul className={s.reviews}>
-          {reviews.map(review => (
+          {reviews.map((review, i) => (
             <li className={s.review} key={review.id}>
-              <details>
+              <details open={i < 5 ? 'open' : ''}>
                 <summary className={s.author}>{review.author}</summary>
                 <p className={s.content}>{review.content}</p>
               </details>
