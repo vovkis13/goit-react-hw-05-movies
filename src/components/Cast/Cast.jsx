@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchMovieById } from '../../api/fetchMovies';
+import { fetchMovieById } from 'api/fetchMovies';
 import s from './Cast.module.css';
 
 export default function Cast() {

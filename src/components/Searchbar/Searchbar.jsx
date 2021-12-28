@@ -7,8 +7,9 @@ export default function Searchbar({ onSubmit }) {
   const [query, setQuery] = useState('');
 
   const handleSubmit = e => {
+    e.preventDefault();
+    onSubmit(e.target[1].value);
     setQuery('');
-    onSubmit(e);
   };
 
   return (

@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { fetchMovies } from '../../api/fetchMovies';
-import Searchbar from '../../components/Searchbar';
-import MovieListItem from '../../components/MovieListItem';
+import { fetchMovies } from 'api/fetchMovies';
+import Searchbar from 'components/Searchbar';
+import MovieListItem from 'components/MovieListItem';
 import s from './MoviesPage.module.css';
 
 export default function MoviesPage() {
@@ -28,9 +28,7 @@ export default function MoviesPage() {
     if (searchParams.get('query')) getMovies(searchParams.get('query'));
   }, [searchParams]);
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    const query = e.target[1].value;
+  const handleSubmit = query => {
     navigate(`?query=${query}`);
     getMovies(query);
   };

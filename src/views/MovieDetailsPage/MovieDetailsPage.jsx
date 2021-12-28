@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { fetchMovieById } from '../../api/fetchMovies';
-import MovieCard from '../../components/MovieCard/MovieCard';
+import { fetchMovieById } from 'api/fetchMovies';
+import MovieCard from 'components/MovieCard/MovieCard';
 import s from './MovieDetailsPage.module.css';
 
 export default function MovieDetailsPage() {
@@ -36,5 +36,4 @@ export default function MovieDetailsPage() {
       </div>
     )
   );
-};
-
+}

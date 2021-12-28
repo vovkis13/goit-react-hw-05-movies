@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink, Routes, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Cast from '../Cast';
-import Reviews from '../Reviews';
+import Cast from 'components/Cast';
+import Reviews from 'components/Reviews';
 import s from './MovieCard.module.css';
 
 export default function MovieCard({ movieInfo }) {
