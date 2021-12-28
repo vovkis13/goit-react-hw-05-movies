@@ -1,23 +1,21 @@
 const axios = require('axios');
-const BASE_URL = 'https://api.themoviedb.org/3';
-const API_KEY = 'c7488cc8d311162ba5f5071cc3afab34';
-const MEDIA_TYPE = 'movie';
-const TIME_WINDOW = 'day';
 
 let IMAGE_URL;
-const axiosConfig = {
-  params: {
-    api_key: API_KEY,
-  },
-};
 
-export async function fetchMovies(type = '', query = '') {
-  let url = `${BASE_URL}/${type}/${MEDIA_TYPE}`;
-  let config = axiosConfig;
-  if (type === 'trending') url += `/${TIME_WINDOW}`;
-  if (type === 'search') config = { params: { ...config.params, query } };
+const getMovies = axios.create({
+  baseURL: 'https://api.themoviedb.org/3',
+  params: {
+    api_key: 'c7488cc8d311162ba5f5071cc3afab34',
+  },
+});
+
+export async function fetchMovies(type = 'trending', query = '') {
+  let url = `/${type}/movie`;
+  let params;
+  if (type === 'trending') url += `/day`;
+  if (type === 'search') params = { query };
   try {
-    const { data } = await axios.get(url, config);
+    const { data } = await getMovies(url, { params });
     return data;
   } catch (e) {
     console.error(e);
@@ -25,20 +23,20 @@ export async function fetchMovies(type = '', query = '') {
 }
 
 export async function fetchMovieById(id, type = '') {
-  let url = `${BASE_URL}/configuration`;
+  let url = `/configuration`;
   try {
     if (!IMAGE_URL) {
-      const { data } = await axios.get(url, axiosConfig);
+      const { data } = await getMovies(url);
       IMAGE_URL = data.images.base_url;
     }
   } catch (e) {
     console.error(e);
   }
 
-  url = `${BASE_URL}/${MEDIA_TYPE}/${id}`;
+  url = `/movie/${id}`;
   if (type) url += `/${type}`;
   try {
-    const { data } = await axios.get(url, axiosConfig);
+    const { data } = await getMovies(url);
     if (!type) data.poster_path = IMAGE_URL + '/w300' + data.poster_path;
     if (type === 'credits') {
       return data.cast.map(actor => ({
