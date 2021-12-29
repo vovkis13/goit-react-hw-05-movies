@@ -5,6 +5,7 @@ import s from './Searchbar.module.css';
 
 export default function Searchbar({ onSubmit }) {
   const [query, setQuery] = useState('');
+
   const handleSubmit = e => {
     e.preventDefault();
     const inputedQuery = e.target[1].value;
