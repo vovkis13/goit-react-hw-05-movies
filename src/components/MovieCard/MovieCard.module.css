@@ -6,7 +6,9 @@
   padding: 0 40px;
   color: #562675;
 }
-
+.title {
+  margin-top: 0;
+}
 .thumb img {
   display: block;
   width: 100%;

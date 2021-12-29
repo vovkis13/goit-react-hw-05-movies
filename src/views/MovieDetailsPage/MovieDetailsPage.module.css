@@ -1,5 +1,5 @@
 .goBack {
-  display: block;
+  display: inline-block;
   width: 100px;
   height: 30px;
   margin-left: 40px;
@@ -7,6 +7,9 @@
   border: none;
   border-radius: 10%;
   background-color: hsla(276, 51%, 30%, 0.8);
+  text-align: center;
+  text-decoration: none;
+
   color: white;
 }
 .goBack:hover {

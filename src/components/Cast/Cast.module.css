@@ -1,20 +1,24 @@
 .cast {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  flex-wrap: wrap;
   gap: 10px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
+.title {
+  margin-top: 0;
+}
 .actor {
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  gap: 20px;
-  max-height: 150px;
+  gap: 10px;
 }
 .cast img {
   display: block;
   width: 100%;
+}
+.cast p {
+  font-size: 15px;
 }

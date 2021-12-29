@@ -10,7 +10,7 @@ export default function Cast() {
   useEffect(() => {
     async function fetchData() {
       let movieCast = await fetchMovieById(movieId, 'credits');
-      movieCast = movieCast.slice(0, 5);
+      movieCast = movieCast.slice(0, 6);
       setCast(movieCast);
     }
     fetchData();
@@ -18,7 +18,7 @@ export default function Cast() {
 
   return (
     <>
-      <h3>Cast:</h3>
+      <h3 className={s.title}>Cast:</h3>
       <ul className={s.cast}>
         {cast.map(actor => (
           <li className={s.actor} key={actor.id}>

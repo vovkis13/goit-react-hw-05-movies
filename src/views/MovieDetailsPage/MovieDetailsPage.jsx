@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
+// import { useNavigate,  } from 'react-router-dom';
 import { fetchMovieById } from 'api/fetchMovies';
 import MovieCard from 'components/MovieCard/MovieCard';
 import s from './MovieDetailsPage.module.css';
@@ -7,7 +8,7 @@ import s from './MovieDetailsPage.module.css';
 export default function MovieDetailsPage() {
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { movieId } = useParams();
 
   useEffect(() => {
@@ -28,9 +29,9 @@ export default function MovieDetailsPage() {
   return (
     !loading && (
       <div className={s.details}>
-        <button className={s.goBack} onClick={() => navigate(-1)}>
+        <NavLink className={s.goBack} to={localStorage.getItem('url') ?? '/'}>
           Go back
-        </button>
+        </NavLink>
         <h2 className={s.title}>Movie details</h2>
         {movie && <MovieCard movieInfo={movie} />}
       </div>

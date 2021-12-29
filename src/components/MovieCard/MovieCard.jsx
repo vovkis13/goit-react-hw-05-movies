@@ -15,7 +15,7 @@ export default function MovieCard({ movieInfo }) {
         <img src={poster_path} alt={title} />
       </div>
       <div className={s.info}>
-        <h3>
+        <h3 className={s.title}>
           {title} ({year})
         </h3>
         <p className={s.info}>User score: {vote_average * 10}%</p>
