@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { fetchMovies } from 'api/fetchMovies';
 import Searchbar from 'components/Searchbar';
-import MovieListItem from 'components/MovieListItem';
+import MoviesCollection from 'components/MoviesCollection';
 import s from './MoviesPage.module.css';
 
 export default function MoviesPage() {
@@ -15,7 +15,7 @@ export default function MoviesPage() {
     if (!query) return;
     setLoading(true);
     try {
-      const { results } = await fetchMovies('search', query);
+      const results = await fetchMovies('search', query);
       setMovies(results);
     } catch (e) {
       console.error(e);
@@ -37,13 +37,7 @@ export default function MoviesPage() {
     <div>
       <h2 className={s.title}>Search movies</h2>
       <Searchbar onSubmit={handleSubmit} />
-      {!loading && (
-        <ul className={s.list}>
-          {movies.map(movie => (
-            <MovieListItem movie={movie} key={movie.id} />
-          ))}
-        </ul>
-      )}
+      {!loading && <MoviesCollection movies={movies} />}
     </div>
   );
 }

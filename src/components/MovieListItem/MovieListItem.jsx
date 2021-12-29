@@ -4,14 +4,22 @@ import PropTypes from 'prop-types';
 import s from './MovieListItem.module.css';
 
 export default function MovieListItem({ movie }) {
-  const { id, title } = movie;
+  const { id, title, poster_path, release_date } = movie;
   const { pathname, search } = useLocation();
   const path = pathname === '/' ? '/movies' : pathname;
-  const handleClick = () => localStorage.setItem('gobackURL', pathname + search);
+  const year = release_date.split('-')[0];
+  const handleClick = () =>
+    localStorage.setItem('gobackURL', pathname + search);
   return (
-    <li>
+    <li className={s.item}>
       <Link className={s.link} to={`${path}/${id}`} onClick={handleClick}>
-        {title}
+        <div className={s.imagebox}>
+          <img className={s.image} src={poster_path} alt={title}></img>
+        </div>
+        <div className={s.about}>
+          <h2 className={s.title}>{title}</h2>
+          <p className={s.year}>{year}</p>
+        </div>
       </Link>
     </li>
   );

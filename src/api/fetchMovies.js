@@ -10,19 +10,6 @@ const getMovies = axios.create({
 });
 
 export async function fetchMovies(type = 'trending', query = '') {
-  let url = `/${type}/movie`;
-  let params;
-  if (type === 'trending') url += `/day`;
-  if (type === 'search') params = { query };
-  try {
-    const { data } = await getMovies(url, { params });
-    return data;
-  } catch (e) {
-    console.error(e);
-  }
-}
-
-export async function fetchMovieById(id, type = '') {
   let url = `/configuration`;
   try {
     if (!IMAGE_URL) {
@@ -33,7 +20,23 @@ export async function fetchMovieById(id, type = '') {
     console.error(e);
   }
 
-  url = `/movie/${id}`;
+  url = `/${type}/movie`;
+  let params;
+  if (type === 'trending') url += `/day`;
+  if (type === 'search') params = { query };
+  try {
+    const { data } = await getMovies(url, { params });
+    return data.results.map(movie => ({
+      ...movie,
+      poster_path: IMAGE_URL + 'w200/' + movie.poster_path,
+    }));
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+export async function fetchMovieById(id, type = '') {
+  let url = `/movie/${id}`;
   if (type) url += `/${type}`;
   try {
     const { data } = await getMovies(url);
