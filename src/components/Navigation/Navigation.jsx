@@ -1,10 +1,7 @@
-import React from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import s from './Navigation.module.css';
 
 export default function Navigation() {
-  const location = useLocation();
-  const handleClick = () => localStorage.setItem('url', location.pathname);
   return (
     <nav>
       <ul className={s.list}>
@@ -12,7 +9,6 @@ export default function Navigation() {
           <NavLink
             to="/"
             className={({ isActive }) => (isActive ? s.active : s.inactive)}
-            onClick={handleClick}
           >
             Home
           </NavLink>
@@ -21,7 +17,6 @@ export default function Navigation() {
           <NavLink
             to="/movies"
             className={({ isActive }) => (isActive ? s.active : s.inactive)}
-            onClick={handleClick}
           >
             Movies
           </NavLink>

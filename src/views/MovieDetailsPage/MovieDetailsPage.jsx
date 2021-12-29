@@ -29,7 +29,10 @@ export default function MovieDetailsPage() {
   return (
     !loading && (
       <div className={s.details}>
-        <NavLink className={s.goBack} to={localStorage.getItem('url') ?? '/'}>
+        <NavLink
+          className={s.goBack}
+          to={localStorage.getItem('gobackURL') ?? '/'}
+        >
           Go back
         </NavLink>
         <h2 className={s.title}>Movie details</h2>
