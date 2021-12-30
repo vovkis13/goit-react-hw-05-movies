@@ -3,6 +3,9 @@
   margin: 0;
   padding: 0;
 }
+.title {
+  margin-top: 0;
+}
 .review {
   margin: 5px 0;
   padding: 0;

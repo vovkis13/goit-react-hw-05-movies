@@ -17,8 +17,8 @@ export default function MovieListItem({ movie }) {
           <img className={s.image} src={poster_path} alt={title}></img>
         </div>
         <div className={s.about}>
-          <h2 className={s.title}>{title}</h2>
-          <p className={s.year}>{year}</p>
+          <span className={s.title}>{title}</span>
+          <span className={s.year}>({year})</span>
         </div>
       </Link>
     </li>
