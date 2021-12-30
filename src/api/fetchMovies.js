@@ -9,8 +9,8 @@ const getMovies = axios.create({
   },
 });
 
-export async function fetchMovies(type = 'trending', query = '') {
-  let url = `/configuration`;
+export async function fetchConfig(type = 'trending', query = '') {
+  const url = `/configuration`;
   try {
     if (!IMAGE_URL) {
       const { data } = await getMovies(url);
@@ -19,8 +19,10 @@ export async function fetchMovies(type = 'trending', query = '') {
   } catch (e) {
     console.error(e);
   }
+}
 
-  url = `/${type}/movie`;
+export async function fetchMovies(type = 'trending', query = '') {
+  let url = `/${type}/movie`;
   let params;
   if (type === 'trending') url += `/day`;
   if (type === 'search') params = { query };

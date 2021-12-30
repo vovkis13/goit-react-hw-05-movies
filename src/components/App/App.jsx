@@ -1,5 +1,6 @@
 import { Route, Routes, Navigate } from 'react-router-dom';
-import React, { lazy, Suspense } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
+import { fetchConfig } from 'api/fetchMovies';
 import Container from 'components/Container';
 import Navigation from 'components/Navigation';
 import s from './App.module.css';
@@ -8,6 +9,17 @@ const MoviesPage = lazy(() => import('views/MoviesPage'));
 const MovieDetailsPage = lazy(() => import('views/MovieDetailsPage'));
 
 export default function App() {
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        await fetchConfig();
+      } catch (e) {
+        console.error(e);
+      } finally {
+      }
+    }
+    fetchData();
+  }, []);
   const fallback = <div className={s.suspense}>Please wait...</div>;
   return (
     <Container>
