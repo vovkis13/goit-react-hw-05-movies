@@ -30,7 +30,7 @@ export async function fetchMovies(type = 'trending', query = '') {
     const { data } = await getMovies(url, { params });
     return data.results.map(movie => ({
       ...movie,
-      poster_path: IMAGE_URL + 'w200/' + movie.poster_path,
+      poster_path: IMAGE_URL + 'w185/' + movie.poster_path,
     }));
   } catch (e) {
     console.error(e);
@@ -46,7 +46,7 @@ export async function fetchMovieById(id, type = '') {
     if (type === 'credits') {
       return data.cast.map(actor => ({
         ...actor,
-        profile_path: IMAGE_URL + 'w200' + actor.profile_path,
+        profile_path: IMAGE_URL + 'w185' + actor.profile_path,
       }));
     }
     return data;

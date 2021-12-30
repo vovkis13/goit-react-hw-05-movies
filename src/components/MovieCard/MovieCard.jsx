@@ -1,4 +1,3 @@
-import React from 'react';
 import { NavLink, Routes, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Cast from 'components/Cast';
@@ -9,6 +8,7 @@ export default function MovieCard({ movieInfo }) {
   const { poster_path, title, release_date, vote_average, overview, genres } =
     movieInfo;
   const year = release_date.split('-')[0];
+
   return (
     <div className={s.card}>
       <div className={s.thumb}>

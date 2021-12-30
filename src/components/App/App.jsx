@@ -1,5 +1,5 @@
 import { Route, Routes, Navigate } from 'react-router-dom';
-import React, { useEffect, lazy, Suspense } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { fetchConfig } from 'api/fetchMovies';
 import Container from 'components/Container';
 import Navigation from 'components/Navigation';
@@ -21,6 +21,7 @@ export default function App() {
     fetchData();
   }, []);
   const fallback = <div className={s.suspense}>Please wait...</div>;
+
   return (
     <Container>
       <Navigation />
