@@ -1,6 +1,7 @@
 const axios = require('axios');
 
 let IMAGE_URL;
+let GENRES;
 
 const getMovies = axios.create({
   baseURL: 'https://api.themoviedb.org/3',
@@ -10,11 +11,20 @@ const getMovies = axios.create({
 });
 
 export async function fetchConfig(type = 'trending', query = '') {
-  const url = `/configuration`;
+  let url = `/configuration`;
   try {
     if (!IMAGE_URL) {
       const { data } = await getMovies(url);
       IMAGE_URL = data.images.base_url;
+    }
+  } catch (e) {
+    console.error(e);
+  }
+  url = `/genre/movie/list`;
+  try {
+    if (!GENRES) {
+      const { data } = await getMovies(url);
+      GENRES = data;
     }
   } catch (e) {
     console.error(e);
