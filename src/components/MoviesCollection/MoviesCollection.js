@@ -13,5 +13,5 @@ export default function MoviesCollection({ movies }) {
 }
 
 MoviesCollection.propTypes = {
-  onSubmit: PropTypes.array.isRequired,
+  movies: PropTypes.array.isRequired,
 };
