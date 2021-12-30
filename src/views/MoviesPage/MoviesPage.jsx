@@ -26,7 +26,7 @@ export default function MoviesPage() {
 
   useEffect(() => {
     if (searchParams.get('query')) getMovies(searchParams.get('query'));
-  }, [searchParams]);
+  }, []);
 
   const handleSubmit = query => {
     navigate(`?query=${query}`);
